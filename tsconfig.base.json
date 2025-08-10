@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "declarationMap": true,
-    "emitDeclarationOnly": true,
+    "composite": false,
+    "declarationMap": false,
+    "emitDeclarationOnly": false,
     "importHelpers": true,
     "isolatedModules": true,
     "lib": ["es2022"],
@@ -16,6 +16,20 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["development"]
-  }
+    "customConditions": ["development"],
+    "baseUrl": ".",
+    "rootDir": ".",
+    "sourceMap": true,
+    "noEmit": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "declaration": false,
+    "jsx": "react-native",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": true
+  },
+  "exclude": ["**/*.cjs", "**/*.mjs", "node_modules", "dist"]
 }

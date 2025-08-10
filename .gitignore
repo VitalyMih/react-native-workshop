@@ -58,3 +58,6 @@ npm-debug.*
 web-build/
 cache/
 
+
+.eslintcache
+*.tsbuildinfo
