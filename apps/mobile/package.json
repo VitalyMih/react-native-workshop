@@ -1,5 +1,54 @@
 {
-  "name": "@react-native-workshop/mobile",
+  "name": "mobile",
   "version": "0.0.1",
-  "private": true
+  "private": true,
+  "scripts": {
+    "start": "cross-env EXPO_PUBLIC_APP_ENV=development npx expo start",
+    "start:prod": "cross-env EXPO_PUBLIC_APP_ENV=production npx expo start",
+    "build:dev": "eas build --no-wait -p all --profile=development",
+    "build:internal": "npm run build:dev -- --profile=internal",
+    "build:debug": "npm run build:dev -- --profile=debug",
+    "build:prod": "npm run build:dev -- --profile=production",
+    "update:dev": "cross-env EXPO_PUBLIC_APP_ENV=development eas update --branch development",
+    "update:prod": "cross-env EXPO_PUBLIC_APP_ENV=production eas update --branch production",
+    "submit:dev": "cross-env EXPO_PUBLIC_APP_ENV=development eas submit --no-wait --profile=development",
+    "submit:prod": "cross-env EXPO_PUBLIC_APP_ENV=production eas submit --no-wait --profile=production",
+    "android": "npx expo run:android",
+    "ios": "npx expo run:ios",
+    "eas-build-post-install": "cd ../../ && node tools/scripts/eas-build-post-install.mjs . apps/mobile"
+  },
+  "dependencies": {
+    "@ronas-it/react-native-common-modules": "~1.1.0",
+    "@testing-library/jest-native": "*",
+    "@testing-library/react-native": "*",
+    "expo": "~53.0.1",
+    "expo-constants": "~17.1.6",
+    "expo-dev-client": "~5.2.0",
+    "expo-insights": "~0.9.3",
+    "expo-linking": "~7.1.5",
+    "expo-localization": "~16.1.6",
+    "expo-router": "~5.1.0",
+    "expo-status-bar": "~2.2.3",
+    "expo-updates": "~0.28.14",
+    "i18n-js": "~4.5.1",
+    "lodash-es": "^4.17.21",
+    "metro-config": "^0.82.0",
+    "react": "~19.0.0",
+    "react-native": "~0.79.0",
+    "react-native-extended-stylesheet": "^0.12.0",
+    "react-native-mmkv": "~3.2.0",
+    "react-native-safe-area-context": "~5.4.0",
+    "react-native-screens": "~4.11.1",
+    "react-native-svg": "~15.11.2",
+    "react-native-svg-transformer": "~1.5.1",
+    "react-native-web": "*"
+  },
+  "devDependencies": {
+    "@expo/cli": "~0.24.16",
+    "@types/lodash-es": "^4.17.12",
+    "metro": "^0.82.0",
+    "reactotron-react-native": "~5.1.14",
+    "reactotron-redux": "~3.2.0"
+  },
+  "main": "expo-router/entry"
 }
