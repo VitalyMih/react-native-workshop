@@ -1,4 +1,5 @@
-import { setLanguage } from '@ronas-it/react-native-common-modules/i18n';
+import { PrimaryHeader } from '@react-native-workshop/mobile/shared/ui/ui-kit';
+import { setLanguage, useTranslation } from '@ronas-it/react-native-common-modules/i18n';
 
 import { Stack } from 'expo-router';
 import { ReactElement } from 'react';
@@ -20,9 +21,11 @@ export const unstable_settings = {
 };
 
 function App(): ReactElement {
+  const translate = useTranslation('APP.LAYOUT');
+
   return (
     <Stack>
-      <Stack.Screen name='index' />
+      <Stack.Screen name='index' options={{ title: translate('TEXT_PROFILE'), header: PrimaryHeader }} />
     </Stack>
   );
 }

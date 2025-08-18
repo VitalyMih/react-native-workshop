@@ -1,22 +1,11 @@
-import { createStyles } from '@react-native-workshop/mobile/shared/ui/styles';
+import { Profile } from '@react-native-workshop/mobile/account/features/profile';
+import { AppScreen } from '@react-native-workshop/mobile/shared/ui/ui-kit';
 import { ReactElement } from 'react';
-import { View, Text } from 'react-native';
 
-export default function RootScreen(): ReactElement {
+export default function ProfileScreen(): ReactElement {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Hello World</Text>
-    </View>
+    <AppScreen scrollDisabled>
+      <Profile />
+    </AppScreen>
   );
 }
-
-const styles = createStyles({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    color: 'white',
-  },
-});
