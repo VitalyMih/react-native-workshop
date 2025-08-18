@@ -35,6 +35,7 @@
         "libs/mobile/shared/data-access/storage/src/index.ts"
       ],
       "@react-native-workshop/mobile/shared/ui/styles": ["libs/mobile/shared/ui/styles/src/index.ts"],
+      "@react-native-workshop/mobile/shared/ui/ui-kit": ["libs/mobile/shared/ui/ui-kit/src/index.ts"],
       "@react-native-workshop/mobile/shared/utils/app-env": ["libs/mobile/shared/utils/app-env/src/index.ts"],
       "@react-native-workshop/mobile/shared/utils/navigation": ["libs/mobile/shared/utils/navigation/src/index.ts"]
     }
