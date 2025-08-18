@@ -1,2 +1,7 @@
 export * from './screen';
 export * from './pressable';
+export * from './avatar';
+export * from './icon';
+export * from './assets';
+export * from './pressable-icon';
+export * from './primary-header';

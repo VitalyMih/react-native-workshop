@@ -20,7 +20,6 @@ export const colors = {
   error: '#F93487',
   success: '#31B264',
   warning: '#DB8709',
-  active: '#F0F0F0',
 };
 
 export const spacings = {
@@ -29,6 +28,8 @@ export const spacings = {
   contentOffset: '1.25rem', // 20px
   containerOffset: '1.5rem', // 24px
   containerSecondaryOffset: '2rem', // 32px
+  basicBorderRadius: 16,
+  secondaryBorderRadius: 12,
 };
 
 export const fontFamily = {

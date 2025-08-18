@@ -1,6 +1,6 @@
 import { ReactElement, useMemo } from 'react';
 import { ScrollView, ScrollViewProps, View, ViewProps } from 'react-native';
-import { commonStyle, createStyles, spacings } from '@react-native-workshop/mobile/shared/ui/styles';
+import { colors, commonStyle, createStyles, spacings } from '@react-native-workshop/mobile/shared/ui/styles';
 
 export interface AppScreenProps {
   scrollDisabled?: boolean;
@@ -47,6 +47,7 @@ const styles = createStyles({
     minHeight: '100%',
   },
   container: {
+    backgroundColor: colors.backgroundPrimary,
     padding: spacings.basicOffset,
   },
 });
