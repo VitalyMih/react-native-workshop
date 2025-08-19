@@ -2,7 +2,7 @@ import BottomSheet, { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useTranslation } from '@ronas-it/react-native-common-modules/i18n';
 import { AppSafeAreaView } from '@ronas-it/react-native-common-modules/safe-area-view';
 import { ForwardedRef, ReactElement, RefObject } from 'react';
-import { Text, View } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import { colors, createStyles, spacings } from '@react-native-workshop/mobile/shared/ui/styles';
 import { AppBottomSheet, AppBottomSheetProps } from '../bottom-sheet';
 import { Icon } from '../icon';
@@ -48,7 +48,7 @@ export function AppActionsBottomSheet({ actions, ref, ...props }: AppActionsBott
       withoutBackground
       enablePanDownToClose={false}
       {...props}>
-      <AppSafeAreaView edges={['bottom']}>
+      <AppSafeAreaView edges={['bottom']} style={styles.safeAreaContainer}>
         <View style={styles.actionsContainer}>{actions.map(renderActionRow)}</View>
         {renderActionRow(cancelAction)}
       </AppSafeAreaView>
@@ -59,6 +59,9 @@ export function AppActionsBottomSheet({ actions, ref, ...props }: AppActionsBott
 const styles = createStyles({
   container: {
     paddingHorizontal: spacings.basicOffset,
+  },
+  safeAreaContainer: {
+    paddingBottom: Platform.OS === 'android' ? spacings.basicOffset : 0,
   },
   actionsContainer: {
     overflow: 'hidden',
