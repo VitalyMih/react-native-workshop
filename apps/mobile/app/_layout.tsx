@@ -1,8 +1,10 @@
+import { commonStyle } from '@react-native-workshop/mobile/shared/ui/styles';
 import { PrimaryHeader } from '@react-native-workshop/mobile/shared/ui/ui-kit';
 import { setLanguage, useTranslation } from '@ronas-it/react-native-common-modules/i18n';
 
 import { Stack } from 'expo-router';
 import { ReactElement } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -33,5 +35,9 @@ function App(): ReactElement {
 export default function RootLayout(): ReactElement | null {
   useLanguage('en');
 
-  return <App />;
+  return (
+    <GestureHandlerRootView style={commonStyle.fullFlex}>
+      <App />
+    </GestureHandlerRootView>
+  );
 }
