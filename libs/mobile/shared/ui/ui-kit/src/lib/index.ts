@@ -5,3 +5,4 @@ export * from './icon';
 export * from './assets';
 export * from './pressable-icon';
 export * from './primary-header';
+export * from './bottom-sheet';
