@@ -1,5 +1,10 @@
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useTranslation } from '@ronas-it/react-native-common-modules/i18n';
+import {
+  ImagePickerError,
+  imagePickerService,
+  ImagePickerSource,
+} from '@ronas-it/react-native-common-modules/image-picker';
 import { ReactElement, useRef } from 'react';
 import { View, Text } from 'react-native';
 import { colors, createStyles, spacings } from '@react-native-workshop/mobile/shared/ui/styles';
@@ -19,8 +24,28 @@ export function Profile(): ReactElement {
 
   const openActions = (): void => actionsRef.current?.present();
 
+  const handlePickImage = async (source: ImagePickerSource): Promise<void> => {
+    const image = await imagePickerService.getImage(source);
+    const asset =
+      image !== ImagePickerError.UNAVAILABLE && image !== ImagePickerError.PERMISSION_DENIED
+        ? image?.assets?.[0]
+        : null;
+
+    if (!asset) {
+      return;
+    }
+
+    showUnderConstruction();
+    // TODO: Implement logic to upload the image
+    // const data = imagePickerService.getFormData(asset.uri);
+  };
+
   const actions: Array<AppBottomSheetAction> = [
-    { title: translate('BUTTON_CHANGE_PHOTO'), iconName: 'edit', onPress: showUnderConstruction },
+    {
+      title: translate('BUTTON_CHANGE_PHOTO'),
+      iconName: 'edit',
+      onPress: () => handlePickImage(ImagePickerSource.GALLERY),
+    },
     { title: translate('BUTTON_DELETE_PHOTO'), iconName: 'trash', onPress: showUnderConstruction },
   ];
 
