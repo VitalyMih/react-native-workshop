@@ -1,3 +1,7 @@
 {
-  "APP": {}
+  "APP": {
+    "LAYOUT": {
+      "TEXT_PROFILE": "Profile"
+    }
+  }
 }
