@@ -18,6 +18,7 @@
     "eas-build-post-install": "cd ../../ && node tools/scripts/eas-build-post-install.mjs . apps/mobile"
   },
   "dependencies": {
+    "@gorhom/bottom-sheet": "^5.2.3",
     "@ronas-it/react-native-common-modules": "~1.1.0",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
