@@ -8,7 +8,11 @@ import {
 import { ReactElement, useRef } from 'react';
 import { View } from 'react-native';
 import { createStyles } from '@react-native-workshop/mobile/shared/ui/styles';
-import { AppActionsBottomSheet, AppBottomSheetAction } from '@react-native-workshop/mobile/shared/ui/ui-kit';
+import {
+  ActionStatus,
+  AppActionsBottomSheet,
+  AppBottomSheetAction,
+} from '@react-native-workshop/mobile/shared/ui/ui-kit';
 import { AlertService } from '@react-native-workshop/mobile/shared/utils/alert-service';
 import { ProfileAvatar } from './components';
 
@@ -42,7 +46,12 @@ export function Profile(): ReactElement {
       iconName: 'edit',
       onPress: () => handlePickImage(ImagePickerSource.GALLERY),
     },
-    { title: translate('BUTTON_DELETE_PHOTO'), iconName: 'trash', onPress: showUnderConstruction },
+    {
+      title: translate('BUTTON_DELETE_PHOTO'),
+      iconName: 'trash',
+      onPress: showUnderConstruction,
+      status: ActionStatus.DESTRUCTIVE,
+    },
   ];
 
   return (

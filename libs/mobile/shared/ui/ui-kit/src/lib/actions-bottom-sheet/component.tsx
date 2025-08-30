@@ -7,6 +7,7 @@ import { colors, createStyles, spacings } from '@react-native-workshop/mobile/sh
 import { AppBottomSheet, AppBottomSheetProps } from '../bottom-sheet';
 import { Icon } from '../icon';
 import { AppPressable } from '../pressable';
+import { ActionStatus } from './enums';
 import { AppBottomSheetAction } from './types';
 
 export interface AppActionsBottomSheetProps extends Omit<AppBottomSheetProps, 'children'> {
@@ -19,21 +20,24 @@ export function AppActionsBottomSheet({ actions, ref, ...props }: AppActionsBott
 
   const closeModal = (): void => (ref as RefObject<BottomSheetModal | BottomSheet>)?.current.close();
 
-  const cancelAction = {
+  const cancelAction: AppBottomSheetAction = {
     title: translate('BUTTON_CANCEL'),
     onPress: closeModal,
+    isContentCentered: true,
   };
 
   const renderActionRow = (action: AppBottomSheetAction): ReactElement => {
     const isCancelAction = action === cancelAction;
+    const isContentCentered = action.isContentCentered || isCancelAction;
+    const isDestructive = action.status === ActionStatus.DESTRUCTIVE;
 
     return (
       <AppPressable
-        style={[styles.actionContainer, isCancelAction && styles.cancelAction]}
+        style={[styles.actionContainer, isContentCentered && styles.cancelAction]}
         onPress={action.onPress}
         key={action.title}>
-        {action.iconName && <Icon name={action.iconName} />}
-        <Text style={styles.text}>{action.title}</Text>
+        {action.iconName && <Icon name={action.iconName} color={isDestructive ? colors.error : undefined} />}
+        <Text style={[styles.text, isDestructive && styles.destructiveText]}>{action.title}</Text>
       </AppPressable>
     );
   };
@@ -83,5 +87,8 @@ const styles = createStyles({
   text: {
     color: colors.textPrimary,
     fontSize: 16,
+  },
+  destructiveText: {
+    color: colors.error,
   },
 });
