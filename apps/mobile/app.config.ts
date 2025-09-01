@@ -41,7 +41,17 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
       },
       edgeToEdgeEnabled: true,
     },
-    plugins: ['expo-router', 'expo-localization'],
+    plugins: [
+      'expo-router',
+      'expo-localization',
+      [
+        'expo-image-picker',
+        {
+          photosPermission: 'Allow React Native Workshop to access your photos.',
+          cameraPermission: 'Allow React Native Workshop to access your camera.',
+        },
+      ],
+    ],
     newArchEnabled: true,
     extra,
   };

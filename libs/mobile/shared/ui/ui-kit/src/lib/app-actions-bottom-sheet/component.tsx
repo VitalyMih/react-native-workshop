@@ -1,10 +1,13 @@
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { useTranslation } from '@ronas-it/react-native-common-modules/i18n';
+import { AppSafeAreaView } from '@ronas-it/react-native-common-modules/safe-area-view';
 import { ReactElement, RefObject } from 'react';
-import { Text, View } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import { colors, createStyles, spacings } from '@react-native-workshop/mobile/shared/ui/styles';
 import { AppBottomSheet } from '../bottom-sheet';
 import { Icon } from '../icon';
 import { AppPressable } from '../pressable';
+import { ActionStatus } from './enums';
 import { AppBottomSheetAction } from './types';
 
 export interface AppActionsBottomSheetProps {
@@ -13,12 +16,34 @@ export interface AppActionsBottomSheetProps {
 }
 
 export function AppActionsBottomSheet({ actions, ref }: AppActionsBottomSheetProps): ReactElement {
-  const renderAction = (action: AppBottomSheetAction): ReactElement => (
-    <AppPressable style={styles.actionContainer} onPress={action.onPress} key={action.title}>
-      {action.iconName && <Icon name={action.iconName} />}
-      <Text style={styles.actionText}>{action.title}</Text>
-    </AppPressable>
-  );
+  const translate = useTranslation('SHARED.APP_ACTIONS_BOTTOM_SHEET');
+
+  const closeModal = (): void => ref?.current?.dismiss();
+
+  const cancelAction: AppBottomSheetAction = {
+    title: translate('BUTTON_CANCEL'),
+    onPress: closeModal,
+    isContentCentered: true,
+  };
+
+  const renderAction = (action: AppBottomSheetAction): ReactElement => {
+    const isCancelAction = action === cancelAction;
+    const isDestructiveAction = action.status === ActionStatus.DESTRUCTIVE;
+
+    return (
+      <AppPressable
+        style={[
+          styles.actionContainer,
+          action.isContentCentered && styles.centeredAction,
+          isCancelAction && styles.cancelAction,
+        ]}
+        onPress={action.onPress}
+        key={action.title}>
+        {action.iconName && <Icon name={action.iconName} color={isDestructiveAction ? colors.error : undefined} />}
+        <Text style={[styles.actionText, isDestructiveAction && styles.destructiveText]}>{action.title}</Text>
+      </AppPressable>
+    );
+  };
 
   return (
     <AppBottomSheet
@@ -29,7 +54,10 @@ export function AppActionsBottomSheet({ actions, ref }: AppActionsBottomSheetPro
       headerless
       withoutBackground
       enablePanDownToClose={false}>
-      <View style={styles.actionsContainer}>{actions.map(renderAction)}</View>
+      <AppSafeAreaView edges={['bottom']} style={styles.safeAreaContainer}>
+        <View style={styles.actionsContainer}>{actions.map(renderAction)}</View>
+        {renderAction(cancelAction)}
+      </AppSafeAreaView>
     </AppBottomSheet>
   );
 }
@@ -37,6 +65,9 @@ export function AppActionsBottomSheet({ actions, ref }: AppActionsBottomSheetPro
 const styles = createStyles({
   container: {
     paddingHorizontal: spacings.basicOffset,
+  },
+  safeAreaContainer: {
+    paddingBottom: Platform.OS === 'android' ? spacings.basicOffset : 0,
   },
   actionsContainer: {
     overflow: 'hidden',
@@ -50,8 +81,18 @@ const styles = createStyles({
     paddingHorizontal: spacings.containerOffset,
     backgroundColor: colors.backgroundTertiary,
   },
+  centeredAction: {
+    justifyContent: 'center',
+  },
+  cancelAction: {
+    marginTop: spacings.contentOffset,
+    borderRadius: spacings.secondaryBorderRadius,
+  },
   actionText: {
     fontSize: 16,
     color: colors.textPrimary,
+  },
+  destructiveText: {
+    color: colors.error,
   },
 });
