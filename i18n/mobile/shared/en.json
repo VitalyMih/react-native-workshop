@@ -3,6 +3,9 @@
     "ALERT_SERVICE": {
       "BUTTON_CANCEL": "Cancel",
       "TEXT_WE_ARE_WORKING_ON_THIS_SECTION": "We are working on this section"
+    },
+    "APP_ACTIONS_BOTTOM_SHEET": {
+      "BUTTON_CANCEL": "Cancel"
     }
   }
 }
