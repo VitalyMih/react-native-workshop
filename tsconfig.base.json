@@ -31,6 +31,7 @@
     "strictPropertyInitialization": false,
     "strictNullChecks": true,
     "paths": {
+      "@react-native-workshop/mobile/account/features/profile": ["libs/mobile/account/features/profile/src/index.ts"],
       "@react-native-workshop/mobile/shared/data-access/storage": [
         "libs/mobile/shared/data-access/storage/src/index.ts"
       ],
