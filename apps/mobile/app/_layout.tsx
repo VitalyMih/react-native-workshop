@@ -1,7 +1,7 @@
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { commonStyle } from '@react-native-workshop/mobile/shared/ui/styles';
 import { PrimaryHeader } from '@react-native-workshop/mobile/shared/ui/ui-kit';
 import { setLanguage, useTranslation } from '@ronas-it/react-native-common-modules/i18n';
-
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { ReactElement } from 'react';
@@ -13,6 +13,7 @@ const translations = {
   en: {
     ...require('i18n/mobile/app/en.json'),
     ...require('i18n/mobile/shared/en.json'),
+    ...require('i18n/mobile/account/en.json'),
   },
 };
 
@@ -38,8 +39,10 @@ export default function RootLayout(): ReactElement | null {
 
   return (
     <GestureHandlerRootView style={commonStyle.fullFlex}>
-      <StatusBar style='light' />
-      <App />
+      <BottomSheetModalProvider>
+        <StatusBar style='light' />
+        <App />
+      </BottomSheetModalProvider>
     </GestureHandlerRootView>
   );
 }
