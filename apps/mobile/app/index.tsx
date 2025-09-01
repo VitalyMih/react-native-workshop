@@ -1,19 +1,11 @@
-import { colors, createStyles } from '@react-native-workshop/mobile/shared/ui/styles';
+import { Profile } from '@react-native-workshop/mobile/account/features/profile';
 import { AppScreen } from '@react-native-workshop/mobile/shared/ui/ui-kit';
 import { ReactElement } from 'react';
-import { Text } from 'react-native';
 
 export default function ProfileScreen(): ReactElement {
   return (
     <AppScreen scrollDisabled>
-      <Text style={styles.text}>{'Hello world!'}</Text>
+      <Profile />
     </AppScreen>
   );
 }
-
-const styles = createStyles({
-  text: {
-    color: colors.textPrimary,
-    alignSelf: 'center',
-  },
-});
